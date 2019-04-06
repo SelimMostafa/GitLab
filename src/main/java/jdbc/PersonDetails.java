@@ -198,6 +198,51 @@ public class PersonDetails extends GridPane {
         updatebutton.setLayoutY(15.0);
         updatebutton.setMnemonicParsing(false);
         updatebutton.setText("Update");
+        
+         nextbutton.setLayoutX(306.0);
+        nextbutton.setLayoutY(15.0);
+        nextbutton.setMnemonicParsing(false);
+        nextbutton.setText("Next");
+
+        nextbutton.setOnAction((e) -> {
+            try {
+                if (resultset.next() == true) {
+                    textField.setText(resultset.getString(1));
+                    textField0.setText(resultset.getString(2));
+                    textField3.setText(resultset.getString(3));
+                    textField2.setText(resultset.getString(4));
+                    textField1.setText(resultset.getString(5));
+                    textField4.setText(resultset.getString(6));
+                    System.out.println("next row");
+                } else {
+                    resultset.previous();
+                    System.out.println("No more rows");
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            }
+        });
+
+        lastbutton.setLayoutX(371.0);
+        lastbutton.setLayoutY(15.0);
+        lastbutton.setMnemonicParsing(false);
+        lastbutton.setText("Last");
+
+        lastbutton.setOnAction((e) -> {
+            try {
+                resultset.last();
+                textField.setText(resultset.getString(1));
+                textField0.setText(resultset.getString(2));
+                textField3.setText(resultset.getString(3));
+                textField2.setText(resultset.getString(4));
+                textField1.setText(resultset.getString(5));
+                textField4.setText(resultset.getString(6));
+            } catch (SQLException ex) {
+
+            }
+        });
+
+
         updatebutton.setOnAction((e) -> {
 
             String id = textField.getText();
@@ -262,6 +307,7 @@ public class PersonDetails extends GridPane {
             }
 
         });
+
         deletebutton.setLayoutX(76.0);
         deletebutton.setLayoutY(15.0);
         deletebutton.setMnemonicParsing(false);
