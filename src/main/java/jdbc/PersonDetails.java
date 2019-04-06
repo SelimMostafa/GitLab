@@ -198,5 +198,69 @@ public class PersonDetails extends GridPane {
         updatebutton.setLayoutY(15.0);
         updatebutton.setMnemonicParsing(false);
         updatebutton.setText("Update");
+        updatebutton.setOnAction((e) -> {
+
+            String id = textField.getText();
+            String firstName = textField0.getText();
+            String middleName = textField3.getText();
+            String lastName = textField2.getText();
+            String email = textField1.getText();
+            String phone = textField4.getText();
+            if (textField.getText().equals(null) || textField0.getText().equals("")
+                    || textField1.getText().equals("") || textField2.getText().equals("")
+                    || textField3.getText().equals("") || textField3.getText().equals("")) {
+                alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Something wrong");
+                alert.setHeaderText("Emty Field");
+                alert.setContentText("You have to fill all fields ");
+                alert.showAndWait().ifPresent(rs -> {
+                    if (rs == ButtonType.OK) {
+                        System.out.println("Pressed OK.");
+                    }
+                });
+            } else {
+                if (new_flag != true) {
+                    try {
+                        System.out.println("trying to Update Old record");
+                        resultset.updateString(1, id);
+                        resultset.updateString(2, firstName);
+                        resultset.updateString(3, middleName);
+                        resultset.updateString(4, lastName);
+                        resultset.updateString(5, email);
+                        resultset.updateString(6, phone);
+                        resultset.updateRow();
+                    } catch (SQLException ex) {
+                        System.out.println("No Person tp update");
+                    }
+                } else {
+                    try {
+                        System.out.println("Add new record");
+                        resultset.updateString(1, id);
+                        resultset.updateString(2, firstName);
+                        resultset.updateString(3, middleName);
+                        resultset.updateString(4, lastName);
+                        resultset.updateString(5, email);
+                        resultset.updateString(6, phone);
+                        resultset.insertRow();
+                        new_flag = false;
+                        updatebutton.setText("Update");
+                    } catch (SQLException ex) {
+                        alert = new Alert(AlertType.INFORMATION);
+                        alert.setTitle("Something wrong");
+                        alert.setHeaderText("Duplicate");
+                        alert.setContentText("There is already an employee with that id");
+                        alert.showAndWait().ifPresent(rs -> {
+                            if (rs == ButtonType.OK) {
+                                System.out.println("Pressed OK.");
+                            }
+                        });
+                        System.out.println("There is already an employee with that id");
+
+                    }
+                }
+
+            }
+
+        });
     }
 }
