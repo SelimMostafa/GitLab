@@ -267,6 +267,7 @@ public class PersonDetails extends GridPane {
 
 
 
+
         newbutton.setOnAction((e) -> {
 
             try {
@@ -286,7 +287,9 @@ public class PersonDetails extends GridPane {
         });
         
           deletebutton.setLayoutX(76.0);
-        deletebutton.setLayoutY(15.0);
+
+        deletebutton.setLayoutX(76.0);
+
         deletebutton.setMnemonicParsing(false);
         deletebutton.setText("Delete");
 
@@ -305,6 +308,5 @@ public class PersonDetails extends GridPane {
             }
         });
 
-        
     }
 }
