@@ -262,5 +262,24 @@ public class PersonDetails extends GridPane {
             }
 
         });
+        deletebutton.setLayoutX(76.0);
+        deletebutton.setLayoutY(15.0);
+        deletebutton.setMnemonicParsing(false);
+        deletebutton.setText("Delete");
+
+        deletebutton.setOnAction((e) -> {
+            try {
+                resultset.deleteRow();
+                textField.setText("Deleted");
+                textField0.setText("Deleted");
+                textField1.setText("Deleted");
+                textField2.setText("Deleted");
+                textField3.setText("Deleted");
+                textField4.setText("Deleted");
+
+            } catch (SQLException ex) {
+                System.out.println("No Person to delete");
+            }
+        });
     }
 }
