@@ -29,7 +29,7 @@ public class MyDataSourceFactory {
         MysqlDataSource mysqlDS = null;
 
         try {
-            fileinput = new FileInputStream("db.properties");
+            fileinput = new FileInputStream("src/main/resources/db.properties");
             properties.load(fileinput);
             mysqlDS = new MysqlDataSource();
             // get the properties value
