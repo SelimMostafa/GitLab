@@ -198,6 +198,8 @@ public class PersonDetails extends GridPane {
         updatebutton.setLayoutY(15.0);
         updatebutton.setMnemonicParsing(false);
         updatebutton.setText("Update");
+ 
+
         updatebutton.setOnAction((e) -> {
 
             String id = textField.getText();
@@ -262,8 +264,32 @@ public class PersonDetails extends GridPane {
             }
 
         });
+
+
+
+
+        newbutton.setOnAction((e) -> {
+
+            try {
+                textField.clear();
+                textField0.clear();
+                textField1.clear();
+                textField2.clear();
+                textField3.clear();
+                textField4.clear();
+                resultset.moveToInsertRow();
+                new_flag = true;
+                updatebutton.setText("Add");
+
+            } catch (SQLException ex) {
+                System.out.println("This ID Already Exist, Check that you are entering a new employee");
+            }
+        });
+        
+          deletebutton.setLayoutX(76.0);
+
         deletebutton.setLayoutX(76.0);
-        deletebutton.setLayoutY(15.0);
+
         deletebutton.setMnemonicParsing(false);
         deletebutton.setText("Delete");
 
@@ -281,5 +307,7 @@ public class PersonDetails extends GridPane {
                 System.out.println("No Person to delete");
             }
         });
+        
+
     }
 }
