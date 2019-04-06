@@ -7,7 +7,7 @@ package jdbc;
 
 /**
  *
- * @author solo
+ * @author solo & hend
  */
 public class MyDataSourceFactory {
     
